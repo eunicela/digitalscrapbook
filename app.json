@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Digital Scrapbook",
+    "slug": "digital-scrapbook",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "digitalscrapbook",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.example.digitalscrapbook",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Choose photos to place in your scrapbook pages."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#38456b"
+      }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose photos to place in your scrapbook pages."
+        }
+      ],
+      "expo-status-bar"
+    ]
+  }
+}
