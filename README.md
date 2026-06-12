@@ -1,43 +1,21 @@
 # Digital Scrapbook
 
-An Expo React Native prototype for a scrapbook-style photo journal that can be
-tested directly on an iPhone with Expo Go.
+An iPhone-only SwiftUI prototype for a realistic, scrapbook-style photo journal.
 
 ## Current prototype
 
 - Local scrapbook library with seeded sample content
-- Phone-friendly page browsing with a tactile animated page flip
+- Realistic page-curl browsing via `UIPageViewController`
 - Freeform page editor for a handmade scrapbook feel
 - Add imported photos, captions, stickers, tape, date numbers, and paper scraps
-- Drag elements around the page
-- Resize, rotate, delete, and reorder selected elements
+- Drag, pinch-resize, rotate, delete, and reorder page elements
 - Switch between paper backgrounds
-- Persist scrapbook data locally with AsyncStorage
+- Persist scrapbook data locally as JSON in the app documents directory
 
-## Test on your iPhone
+## Open in Xcode
 
-1. Install **Expo Go** from the App Store.
-2. Install project dependencies:
+Open `DigitalScrapbook.xcodeproj`, choose an iPhone simulator, and run the
+`DigitalScrapbook` target.
 
-   ```bash
-   npm install
-   ```
-
-3. Start the dev server with a tunnel:
-
-   ```bash
-   npm run start:tunnel
-   ```
-
-4. Scan the QR code with your iPhone camera or Expo Go.
-
-The tunnel mode is the easiest option when your phone and computer are not on
-the same Wi-Fi network.
-
-## Useful commands
-
-```bash
-npm start
-npm run start:tunnel
-npm run typecheck
-```
+The app targets iOS 17 and uses SwiftUI plus a small UIKit bridge for the page
+curl interaction.
