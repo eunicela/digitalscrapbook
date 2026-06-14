@@ -54,12 +54,12 @@ struct CollectionView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("The Collection")
-                .font(.largeTitle.bold())
+                .font(.system(.largeTitle, design: .rounded).weight(.heavy))
                 .foregroundStyle(.archiveInk)
 
             TextField("Search title, type, condition, notes", text: $searchText)
                 .padding(12)
-                .background(.white, in: RoundedRectangle(cornerRadius: 16))
+                .panelSurface(16)
         }
     }
 
@@ -139,11 +139,15 @@ private struct FilterChip: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.caption.weight(.bold))
+                .font(.system(.caption, design: .rounded).weight(.bold))
                 .foregroundStyle(isActive ? .white : .archiveInk)
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 14)
                 .padding(.vertical, 8)
-                .background(isActive ? Color.archiveInk : Color.white, in: Capsule())
+                .background(isActive ? Color.cardAccent : Color.white, in: Capsule())
+                .overlay {
+                    Capsule()
+                        .stroke(Color.archiveInk.opacity(isActive ? 0 : 0.12), lineWidth: 1)
+                }
         }
     }
 }

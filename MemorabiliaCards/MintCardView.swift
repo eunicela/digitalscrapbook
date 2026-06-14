@@ -69,12 +69,17 @@ struct MintCardView: View {
     private var photoSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Memorabilia photo")
-                .font(.headline)
+                .font(.system(.headline, design: .rounded))
                 .foregroundStyle(.archiveInk)
 
             ZStack {
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.white)
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color.white)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .stroke(Color.archiveInk.opacity(0.10), lineWidth: 1)
+                    }
+                    .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
 
                 if let selectedImage {
                     Image(uiImage: selectedImage)
@@ -104,6 +109,7 @@ struct MintCardView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(.cardAccent)
 
                 PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
                     Label("Library", systemImage: "photo")
@@ -117,13 +123,13 @@ struct MintCardView: View {
     private var detailsSection: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Details")
-                .font(.headline)
+                .font(.system(.headline, design: .rounded))
                 .foregroundStyle(.archiveInk)
 
             TextField("Suggested title", text: $title)
                 .textInputAutocapitalization(.words)
                 .padding(12)
-                .background(.white, in: RoundedRectangle(cornerRadius: 14))
+                .panelSurface(14)
 
             Picker("Type", selection: $selectedType) {
                 ForEach(store.availableTypes, id: \.self) { type in
@@ -131,15 +137,16 @@ struct MintCardView: View {
                 }
             }
             .pickerStyle(.menu)
+            .tint(.archiveInk)
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.white, in: RoundedRectangle(cornerRadius: 14))
+            .panelSurface(14)
 
             HStack {
                 TextField("Add custom type", text: $customType)
                     .textInputAutocapitalization(.words)
                     .padding(12)
-                    .background(.white, in: RoundedRectangle(cornerRadius: 14))
+                    .panelSurface(14)
 
                 Button("Add") {
                     let trimmed = customType.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -155,7 +162,7 @@ struct MintCardView: View {
             TextField("Field notes about this find", text: $notes, axis: .vertical)
                 .lineLimit(3...5)
                 .padding(12)
-                .background(.white, in: RoundedRectangle(cornerRadius: 14))
+                .panelSurface(14)
 
             Text("Discovered date and discovered by are automatic. Condition is randomly assigned once when minted.")
                 .font(.footnote)
@@ -166,7 +173,7 @@ struct MintCardView: View {
     private var previewSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Fixed-size preview")
-                .font(.headline)
+                .font(.system(.headline, design: .rounded))
                 .foregroundStyle(.archiveInk)
 
             VintageCollectorCardView(card: previewCard, previewImage: selectedImage)
@@ -180,7 +187,7 @@ struct MintCardView: View {
             mint()
         } label: {
             Text("Mint Card")
-                .font(.headline)
+                .font(.system(.headline, design: .rounded).weight(.semibold))
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
@@ -253,11 +260,11 @@ private struct MintRevealView: View {
     var body: some View {
         VStack(spacing: 22) {
             Text("Minted")
-                .font(.largeTitle.bold())
+                .font(.system(.largeTitle, design: .rounded).weight(.heavy))
                 .foregroundStyle(.archiveInk)
 
             Text("Condition revealed: \(card.condition.displayName)")
-                .font(.headline)
+                .font(.system(.headline, design: .rounded))
                 .foregroundStyle(.archiveMuted)
 
             VintageCollectorCardView(card: card)
@@ -268,7 +275,7 @@ private struct MintRevealView: View {
                 done()
             } label: {
                 Text("Add to Collection")
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 54)

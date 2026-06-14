@@ -7,9 +7,10 @@ struct CardDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 18) {
-                Text("Frame \(card.number)")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
+                Text("FRAME \(card.number)")
+                    .font(.system(.caption, design: .monospaced).weight(.bold))
+                    .tracking(1)
+                    .foregroundStyle(.archiveMuted)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 VintageCollectorCardView(card: card)
@@ -25,7 +26,7 @@ struct CardDetailView: View {
                     DetailLine(label: "Discovered by", value: card.discoveredBy)
                 }
                 .padding(16)
-                .background(.white, in: RoundedRectangle(cornerRadius: 22))
+                .panelSurface(22)
             }
             .padding(20)
         }
@@ -40,14 +41,16 @@ private struct DetailLine: View {
     let value: String
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .firstTextBaseline) {
             Text(label)
-                .font(.subheadline.bold())
+                .font(.system(.caption, design: .monospaced).weight(.bold))
+                .tracking(0.5)
+                .textCase(.uppercase)
                 .foregroundStyle(.archiveMuted)
                 .frame(width: 110, alignment: .leading)
 
             Text(value)
-                .font(.subheadline)
+                .font(.system(.subheadline, design: .rounded))
                 .foregroundStyle(.archiveInk)
 
             Spacer(minLength: 0)

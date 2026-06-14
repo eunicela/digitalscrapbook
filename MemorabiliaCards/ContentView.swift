@@ -25,11 +25,11 @@ struct ContentView: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 Text("Memorabilia Cards")
-                    .font(.largeTitle.bold())
+                    .font(.system(.largeTitle, design: .rounded).weight(.heavy))
                     .foregroundStyle(.archiveInk)
 
                 Text("Turn everyday finds into fixed-size vintage collector cards.")
-                    .font(.title3.weight(.semibold))
+                    .font(.system(.title3, design: .rounded).weight(.semibold))
                     .foregroundStyle(.secondary)
             }
 
@@ -42,12 +42,12 @@ struct ContentView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Text("What name should appear on your cards?")
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded))
 
                 TextField("Eunice Lai", text: $draftName)
                     .textInputAutocapitalization(.words)
                     .padding(14)
-                    .background(.white, in: RoundedRectangle(cornerRadius: 16))
+                    .panelSurface(16)
             }
 
             Button {
@@ -55,7 +55,7 @@ struct ContentView: View {
                 store.updateProfileName(name.isEmpty ? "Collector" : name)
             } label: {
                 Text("Start collecting")
-                    .font(.headline)
+                    .font(.system(.headline, design: .rounded).weight(.semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 54)
@@ -76,6 +76,20 @@ extension Color {
     static let archiveMuted = Color(red: 0.48, green: 0.43, blue: 0.34)
     static let archiveRed = Color(red: 0.56, green: 0.12, blue: 0.10)
     static let cardAccent = Color(red: 0.20, green: 0.45, blue: 0.95)
+}
+
+extension View {
+    func panelSurface(_ cornerRadius: CGFloat = 16) -> some View {
+        background {
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .fill(Color.white)
+                .shadow(color: .black.opacity(0.05), radius: 10, y: 4)
+                .overlay {
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .stroke(Color.archiveInk.opacity(0.10), lineWidth: 1)
+                }
+        }
+    }
 }
 
 #Preview {
