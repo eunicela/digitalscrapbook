@@ -70,7 +70,7 @@ struct ContentView: View {
 }
 
 extension Color {
-    static let archiveBackground = Color(red: 0.94, green: 0.93, blue: 0.90)
+    static let archiveBackground = Color.white
     static let archivePaper = Color(red: 0.98, green: 0.94, blue: 0.84)
     static let archiveInk = Color(red: 0.16, green: 0.15, blue: 0.12)
     static let archiveMuted = Color(red: 0.48, green: 0.43, blue: 0.34)
