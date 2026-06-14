@@ -75,6 +75,7 @@ extension Color {
     static let archiveInk = Color(red: 0.16, green: 0.15, blue: 0.12)
     static let archiveMuted = Color(red: 0.48, green: 0.43, blue: 0.34)
     static let archiveRed = Color(red: 0.56, green: 0.12, blue: 0.10)
+    static let cardAccent = Color(red: 0.20, green: 0.45, blue: 0.95)
 }
 
 #Preview {
